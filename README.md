@@ -8,10 +8,5 @@
 
 ---
 
-## 📬 Contact Me / للتواصل
-
-Telegram: [t.me/xleex](https://t.me/xleex)
-
----
-
 ✨ **Good Day Bro**
+
