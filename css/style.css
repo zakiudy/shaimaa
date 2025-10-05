@@ -1,0 +1,222 @@
+/* ========================== */
+/* خطوط المستخدم */
+@font-face {
+  font-family: 'Graphik Arabic';
+  src: url('../fonts/GraphikArabic-Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Graphik Arabic';
+  src: url('../fonts/GraphikArabic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ========================== */
+/* Reset و body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Graphik Arabic', sans-serif; 
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  color: #e6e6e6;
+  cursor: crosshair;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #0f2e1d, #145a32, #1e8449, #2ecc71);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  transition: background 0.3s ease;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========================== */
+/* إزالة المطر بالكامل */
+.rain-container, .drop { display: none !important; }
+
+/* ========================== */
+/* flicker + lightning cinematic متقدم */
+body.flicker-active {
+  animation: lightning-flicker 0.08s infinite alternate;
+}
+
+@keyframes lightning-flicker {
+  0%   { background: linear-gradient(120deg, #0f2e1d, #145a32, #1e8449, #2ecc71); }
+  10%  { background: linear-gradient(120deg, #ffffff, #d9ffe2, #aaffcc, #66ff99); }
+  15%  { background: linear-gradient(120deg, #0f2e1d, #145a32, #1e8449, #2ecc71); }
+  25%  { background: linear-gradient(120deg, #ffffff, #c8ffd5, #aaffcc, #55ee88); }
+  40%  { background: linear-gradient(120deg, #0f2e1d, #145a32, #1e8449, #2ecc71); }
+  50%  { background: linear-gradient(120deg, #f4fff8, #b0ffc2, #8affaa, #44ee88); }
+  60%  { background: linear-gradient(120deg, #0f2e1d, #145a32, #1e8449, #2ecc71); }
+  70%  { background: linear-gradient(120deg, #ffffff, #d0ffd8, #a0ffbb, #55ee88); }
+  100% { background: linear-gradient(120deg, #0f2e1d, #145a32, #1e8449, #2ecc71); }
+}
+
+/* ========================== */
+/* الضباب والتأثيرات كما هي */
+body.flicker-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+  animation: fog-move 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes fog-move {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-100px) translateY(20px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+body.flicker-active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.05), rgba(0,0,0,0.9));
+  pointer-events: none;
+  animation: inner-fog 15s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes inner-fog {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.35; }
+  100% { opacity: 0.1; }
+}
+
+/* تأثير الضوء */
+body.flicker-active .cat-gif,
+body.flicker-active .text-block p,
+body.flicker-active .logo {
+  animation: flash-light 0.08s infinite alternate;
+}
+
+@keyframes flash-light {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(3) drop-shadow(0 0 15px #fff); }
+}
+
+/* ========================== */
+/* بقية التنسيقات كما هي */
+.text-regular { font-weight: 400; } 
+.text-bold { font-weight: 700; }
+
+.container { display: flex; flex-direction: column; gap: 1rem; }
+.row { display: flex; align-items: center; justify-content: center; gap: 1rem; position: relative; }
+
+.logo {
+  width: 200px; height: auto;
+  border: 2px solid #a9f5a9;
+  background: linear-gradient(145deg, #e8fce8, #d4fcd4);
+  padding: 5px; border-radius: 40px;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.25), 0 0 70px rgba(120, 250, 150, 0.2);
+  -webkit-user-drag: none; user-drag: none;
+}
+
+.text-block p {
+  margin: 0.3rem 0;
+  font-size: 1.1rem;
+  color: #e0f0e0;
+  text-shadow: 0 0 4px rgba(100, 250, 120, 0.2);
+}
+
+.text-block a { color: #78ff9d; text-decoration: underline; user-select: text; }
+
+.instagram-color { background: linear-gradient(45deg,#f8d2b3,#ecabc8,#ce8ef3,#929af7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.8px #000; /* ستروك حول النص */
+  font-weight: 700; /* اختياري لتقوية الخط */
+.telegram-color { color: #0088cc; }
+.whatsapp-color { color: #25d366; }
+
+.cursor-blink { display:inline-block; animation: blink-animation 1s step-end infinite; }
+@keyframes blink-animation { 50% { opacity:0; } }
+
+/* إزالة الزر العلوي */
+.form-switch-container { display: none !important; }
+
+/* منع تحديد النص */
+body, p, span { user-select: none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; }
+.text-block a { user-select:text; }
+
+.cat-one .cat-gif { position:absolute; top:-80px; left:85%; transform:translateX(-50%); width:100px; animation: cat-one-move 4s ease-in-out infinite; pointer-events:none; mix-blend-mode:difference; }
+/* responsive */
+/* الوضع العادي (الحاسوب) */
+body {
+  font-size: 6rem; /* أساس متوازن */
+}
+
+.logo {
+  width: 160px;
+  border-radius: 35px;
+  padding: 5px;
+}
+
+.cat-gif {
+  top: -70px;
+  width: 90px;
+}
+
+/* للأجهزة اللوحية والمتوسطة */
+@media screen and (max-width: 1024px) {
+  body { font-size: 0.95rem; }
+  .logo { width: 140px; border-radius: 30px; }
+  .cat-gif { top: -60px; width: 80px; }
+}
+
+/* الهواتف */
+@media screen and (max-width: 768px) {
+  body { font-size: 0.9rem; padding: 10px; }
+  .container { gap: 0.8rem; }
+  .row { flex-direction: column; align-items: center; gap: 1rem; }
+  .logo { width: 190px; border-radius: 25px; padding: 4px; }
+  .text-block p { font-size: 0.95rem; text-align: center; word-wrap: break-word; }
+  .cat-gif { top: -50px; width: 110px; }
+}
+
+/* الشاشات الصغيرة جدًا (أقل من 480px) */
+@media screen and (max-width: 480px) {
+  body { font-size: 0.85rem; }
+  .logo { width: 110px; border-radius: 20px; padding: 3px; }
+  .text-block p { font-size: 0.9rem; }
+  .container { gap: 0.5rem; }
+  .cat-gif { top: -40px; width: 60px; }
+}
+
+
+@media screen and (max-width: 480px) {
+  body { font-size:0.8rem; }
+  .logo { width:120px; border-radius:10px; padding:3px; }
+  .text-block p { font-size:0.9rem; }
+  .container { gap:0.5rem; }
+  .cat-gif { top:-40px; width:50px; }
+}
+
+.text-block p {
+  font-size: clamp(1rem, 5.5vw, 1.2rem); /* الأدنى 1rem، يعتمد على عرض الشاشة 2.5vw، الحد الأعلى 1.2rem */
+}
+
+body {
+  font-size: clamp(1rem, 3vw, 6rem); /* حجم الخط العام متجاوب حسب حجم الشاشة */
+}
